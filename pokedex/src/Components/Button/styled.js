@@ -1,10 +1,18 @@
 import styled from 'styled-components';
 
 export const ButtonContainer = styled.button`
-  color: black;
-  background-color: white;
-  border: solid 1px black;
+  color: white;
+  background-color: ${(props) => props.background};
+  border: none;
   cursor: pointer;
   height: 5vh;
-  width: 10vw;
+  width: ${(props) => props.width};
+  border-radius: 120px;
+  font-weight: bold;
+  :focus {
+    outline: none;
+  }
+  :hover {
+    background-color: ${(props) => props.hoverBackground};
+  }
 `;
