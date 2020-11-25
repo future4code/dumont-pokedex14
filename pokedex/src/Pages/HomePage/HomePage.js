@@ -1,34 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Header } from '../../Components/Header/Header';
 import { useHistory } from 'react-router-dom';
 import { goToPokedex } from '../../Router/Coordinator';
 import { CardPokemon } from '../../Components/CardPokemon/CardPokemon';
 import { HomeContainer, PokemonsContainer } from './styled';
-import axios from 'axios';
+import GlobalStateContext from '../../Global/GlobalStateContext';
 
 export function HomePage() {
-  const [pokemons, setPokemons] = useState([]);
+  const { states, setters, requests } = useContext(GlobalStateContext);
+
   const history = useHistory();
 
   useEffect(() => {
-    getPokemons();
+    requests.getPokemons();
   }, []);
 
-  const getPokemons = () => {
-    axios
-      .get('https://pokeapi.co/api/v2/pokemon/')
-      .then((resposta) => {
-        setPokemons(resposta.data.results);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+  const addPokemonToPokedex = (pokemon) => {
+    let newPokedex = [...states.pokedex];
+    newPokedex.push(pokemon);
+    setters.setPokedex(newPokedex);
+    alert(`${pokemon.name} foi adiciona a sua pokedex`);
+    console.log(states.pokedex);
   };
-
-  const renderPokemons = pokemons.map((pokemon) => {
-    return <CardPokemon button1="add pokedex" name={pokemon.name} />;
+  const renderPokemons = states.pokemons.map((pokemon) => {
+    return (
+      <CardPokemon
+        button1="add pokedex"
+        name={pokemon.name}
+        onClickButton={() => addPokemonToPokedex(pokemon)}
+      />
+    );
   });
-  console.log(pokemons)
+
   return (
     <HomeContainer>
       <Header
@@ -36,9 +39,7 @@ export function HomePage() {
         title="Lista de Pokemons"
         onClick={() => goToPokedex(history)}
       />
-      <PokemonsContainer>
-        {renderPokemons}
-      </PokemonsContainer>
+      <PokemonsContainer>{renderPokemons}</PokemonsContainer>
     </HomeContainer>
   );
 }
