@@ -13,6 +13,7 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: space-around;
   border-radius: 60px;
+  margin: 15px;
   div {
     display: flex;
   }
