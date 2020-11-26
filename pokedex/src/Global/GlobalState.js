@@ -11,7 +11,12 @@ const GlobalState = (props) => {
     axios
       .get('https://pokeapi.co/api/v2/pokemon/')
       .then((resposta) => {
-        setPokemons(resposta.data.results);
+        let newPokemons = (resposta.data.results)
+        newPokemons.map((pokemon)=>{
+          pokemon.renderHome = true
+         
+        })
+        setPokemons(newPokemons)
       })
       .catch((err) => {
         console.log(err.message);
@@ -23,7 +28,7 @@ const GlobalState = (props) => {
       .get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
       .then((resposta) => {
         setPokemonData(resposta.data);
-        console.log(namePokemon)
+        console.log(namePokemon);
       })
       .catch((err) => {
         console.log(err.message);

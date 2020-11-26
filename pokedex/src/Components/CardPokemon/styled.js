@@ -22,5 +22,6 @@ export const CardContainer = styled.div`
   }
   img {
     height: 20vh;
+    align-self: center;
   }
 `;

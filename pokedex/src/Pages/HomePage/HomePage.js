@@ -16,22 +16,37 @@ export function HomePage() {
   }, []);
 
   const addPokemonToPokedex = (pokemon) => {
+    pokemon.renderHome = false
     let newPokedex = [...states.pokedex];
-    newPokedex.push(pokemon);
-    setters.setPokedex(newPokedex);
-    alert(`${pokemon.name} foi adiciona a sua pokedex`);
-    console.log(states.pokedex);
+    let alreadyExists = false;
+    newPokedex.map((pokedexPokemon) => {
+      if (pokedexPokemon.name === pokemon.name) {
+        alert(`${pokemon.name} já está na pokedex!`);
+        alreadyExists = true;
+      }
+    });
+    if (alreadyExists === false) {
+      newPokedex.push(pokemon);
+      setters.setPokedex(newPokedex);
+      alert(`${pokemon.name} foi adiciona a sua pokedex`);
+      console.log(states.pokedex);
+    } else {
+      alreadyExists = false;
+    }
   };
-  
-  const renderPokemons = states.pokemons && states.pokemons.map((pokemon) => {
-    return (
-      <CardPokemon
-        button1="add pokedex"
-        name={pokemon.name}
-        onClickButton={() => addPokemonToPokedex(pokemon)}
-      />
-    );
-  });
+  console.log("pokemons", states.pokemon)
+  const renderPokemons =
+    states.pokemons &&
+    states.pokemons.map((pokemon) => {
+      if(pokemon.renderHome===true){
+      return (
+        <CardPokemon
+          button1="add pokedex"
+          name={pokemon.name}
+          onClickButton={() => addPokemonToPokedex(pokemon)}
+        />
+      )};
+    });
 
   return (
     <HomeContainer>
