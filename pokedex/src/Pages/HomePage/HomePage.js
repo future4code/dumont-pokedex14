@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Header } from '../../Components/Header/Header';
 import { useHistory } from 'react-router-dom';
-import { goToPokedex } from '../../Router/Coordinator';
+import { goToDetails, goToPokedex } from '../../Router/Coordinator';
 import { CardPokemon } from '../../Components/CardPokemon/CardPokemon';
 import { HomeContainer, PokemonsContainer } from './styled';
 import GlobalStateContext from '../../Global/GlobalStateContext';
@@ -44,6 +44,7 @@ export function HomePage() {
           button1="add pokedex"
           name={pokemon.name}
           onClickButton={() => addPokemonToPokedex(pokemon)}
+          onClickGoDetails={()=> goToDetails(history,pokemon.name)}
         />
       )};
     });
