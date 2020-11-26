@@ -4,7 +4,7 @@ import GlobalStateContext from './GlobalStateContext';
 
 const GlobalState = (props) => {
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonData, setPokemonDAta] = useState();
+  const [pokemonData, setPokemonData] = useState();
   const [pokedex, setPokedex] = useState([]);
 
   const getPokemons = () => {
@@ -22,7 +22,7 @@ const GlobalState = (props) => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
       .then((resposta) => {
-        setPokemonDAta(resposta.data.sprites.front_default);
+        setPokemonData(resposta.data);
         console.log(namePokemon)
       })
       .catch((err) => {
