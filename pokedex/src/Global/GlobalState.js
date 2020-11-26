@@ -4,7 +4,7 @@ import GlobalStateContext from './GlobalStateContext';
 
 const GlobalState = (props) => {
   const [pokemons, setPokemons] = useState([]);
-  const [pokemonPhoto, setPokemonPhoto] = useState();
+  const [pokemonData, setPokemonData] = useState();
   const [pokedex, setPokedex] = useState([]);
 
   const getPokemons = () => {
@@ -18,20 +18,21 @@ const GlobalState = (props) => {
       });
   };
 
-  const getPokemonPhoto = (namePokemon) => {
+  const getPokemonData = (namePokemon) => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
       .then((resposta) => {
-        setPokemonPhoto(resposta.data.sprites.front_default);
+        setPokemonData(resposta.data);
+        console.log(namePokemon)
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
 
-  const states = { pokemons, pokemonPhoto };
-  const setters = { setPokemons, setPokemonPhoto };
-  const requests = { getPokemons, getPokemonPhoto };
+  const states = { pokemons, pokemonData, pokedex };
+  const setters = { setPokemons, setPokemonData, setPokedex };
+  const requests = { getPokemons, getPokemonData };
 
   const data = { states, setters, requests };
   return (
