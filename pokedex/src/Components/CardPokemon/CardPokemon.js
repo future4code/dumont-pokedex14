@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Button } from '../Button/Button';
 import { CardContainer } from './styled';
 import { goToDetails } from '../../Router/Coordinator';
@@ -8,25 +8,26 @@ import GlobalStateContext from '../../Global/GlobalStateContext';
 
 export function CardPokemon(props) {
   const { states, setters, requests } = useContext(GlobalStateContext);
+  const [pokemonPhoto, setPokemonPhoto] = useState();
   const history = useHistory();
   useEffect(() => {
-    requests.getPokemonPhoto(props.name);
+    getPokemonPhoto(props.name);
   }, []);
 
-  // const getPokemonPhoto = (pokemon) => {
-  //   axios
-  //     .get(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
-  //     .then((resposta) => {
-  //       setPokemonPhoto(resposta.data.sprites.front_default);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.message);
-  //     });
-  // };
+  const getPokemonPhoto = (pokemon) => {
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${props.name}`)
+      .then((resposta) => {
+        setPokemonPhoto(resposta.data.sprites.front_default);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   return (
     <CardContainer backgroundImage={props.backgroundImage}>
-      <img src={states.pokemonPhoto} />
+      <img src={pokemonPhoto} />
       <h3>{props.name}</h3>
       <div>
         <Button

@@ -22,7 +22,8 @@ export function HomePage() {
     alert(`${pokemon.name} foi adiciona a sua pokedex`);
     console.log(states.pokedex);
   };
-  const renderPokemons = states.pokemons.map((pokemon) => {
+  
+  const renderPokemons = states.pokemons && states.pokemons.map((pokemon) => {
     return (
       <CardPokemon
         button1="add pokedex"
