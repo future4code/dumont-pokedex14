@@ -39,10 +39,10 @@ export function CardPokemon(props) {
         />
         <Button
           text="ver detalhes"
-          onClick={() => goToDetails(history)}
           background="#E42256"
           width="8vw"
           hoverBackground="#FF8370"
+          onClick={props.onClickGoDetails}
         />
       </div>
     </CardContainer>

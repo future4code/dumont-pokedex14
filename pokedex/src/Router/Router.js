@@ -13,7 +13,7 @@ export function Router() {
         <Route exact path="/pokedex">
           <PokedexPage />
         </Route>
-        <Route exact path="/details">
+        <Route exact path="/details/:name">
           <DetailsPage />
         </Route>
         <Route>

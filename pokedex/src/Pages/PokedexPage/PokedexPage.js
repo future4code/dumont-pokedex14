@@ -11,8 +11,31 @@ import { PokemonsContainer } from '../HomePage/styled';
 export function PokedexPage() {
   const { states, setters, requests } = useContext(GlobalStateContext);
 
+  const removePokemonFromPokedex = (pokemon) => {
+    let newPokedex = [...states.pokedex]
+    newPokedex.map((pokedexPokemon) => {
+      if (pokedexPokemon.name === pokemon.name) {
+        alert(`${pokemon.name} removido de sua pokedex!`);
+        let index = newPokedex.indexOf(pokemon)
+        console.log(index)
+        newPokedex.splice(index,1)
+        console.log(newPokedex)
+        setters.setPokedex(newPokedex)
+        console.log("poledex",states.pokedex)
+      }})
+
+   
+  }
+
   const renderPokemons = states.pokedex.map((pokemon) => {
-    return <CardPokemon button1="add pokedex" name={pokemon.name} />;
+    return (
+      <CardPokemon
+        button1="remover pokedex"
+        name={pokemon.name}
+        backgroundImage={CardPokemonBackground}
+        onClickButton={() => removePokemonFromPokedex(pokemon)}
+      />
+    );
   });
   const history = useHistory();
   return (
