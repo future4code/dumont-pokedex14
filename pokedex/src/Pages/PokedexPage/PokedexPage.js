@@ -24,15 +24,7 @@ export function PokedexPage() {
         console.log("poledex",states.pokedex)
       }})
 
-    //   let index = states.pokedex.indexOf(pokemon)
-    //   newPokedex.splice(index,1)
-    // let index = states.pokedex.indexOf(pokemon)
-    // console.log(index)
-    
-    // newPokedex.splice(index,1)
-    // console.log(newPokedex)
-    // setters.setPokedex(newPokedex)
-    // console.log(states.pokedex)
+   
   }
 
   const renderPokemons = states.pokedex.map((pokemon) => {

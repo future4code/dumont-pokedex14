@@ -9,7 +9,7 @@ const GlobalState = (props) => {
 
   const getPokemons = () => {
     axios
-      .get('https://pokeapi.co/api/v2/pokemon/')
+      .get('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=890')
       .then((resposta) => {
         let newPokemons = (resposta.data.results)
         newPokemons.map((pokemon)=>{
