@@ -1,16 +1,19 @@
 # POKEDEX
 
-Nome dos integrantes: 
-- Pessoa 1
-- Pessoa 2
-- Pessoa 3
+Nome dos integrantes:
 
-Link do Surge: www.link.com.br
+- Mateus Duarte
+- Rodrigo Xavier
+- Thomas Arantes
+
+Link do Surge: well-groomed-harbor.surge.sh
 
 O que funciona:
-- Item 1
-- Item 2
 
-O que não funciona: 
-- Item 3
-- Item 4
+- Adicionar e Remover Pokemóns
+- Página de Detalhes
+
+O que não funciona:
+
+- Não é 100% responsivo
+- Feature de batalha
